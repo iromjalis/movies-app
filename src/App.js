@@ -5,7 +5,10 @@ import { Switch, Route, NavLink } from "react-router-dom";
 import HomeView from "./views/HomeView/HomeView.js";
 import AuthorsView from "./views/AuthorsView/AuthorsView.js";
 import BooksView from "./views/BooksView/BooksView.js";
+import BookDetails from "./views/BookDetails/BookDetails.js";
 import NotFound from "./views/NotFound/NotFound.js";
+import MoviesView from "./views/MoviesView/MoviesView.js";
+import MovieDetail from "./views/MovieDetail/MovieDetail.js";
 
 const linkStyles = {
   base: {
@@ -47,12 +50,24 @@ const App = () => {
             Books
           </NavLink>
         </li>
+        <li className="Navigation-item">
+          <NavLink
+            to="/movies"
+            style={linkStyles.base}
+            activeStyle={linkStyles.active}
+          >
+            Movies
+          </NavLink>
+        </li>
       </ul>
 
       <Switch>
         <Route path="/" exact component={HomeView} />
         <Route path="/authors" component={AuthorsView} />
-        <Route path="/books" component={BooksView} />
+        <Route path="/books" exact component={BooksView} />
+        <Route path="/books/:bookId" component={BookDetails} />
+        <Route path="/movies" exact component={MoviesView} />
+        <Route path="/movies" component={MovieDetail} />
         <Route component={NotFound} />
       </Switch>
       {/* <Redirect to="/" /> */}

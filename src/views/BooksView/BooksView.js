@@ -25,8 +25,7 @@ class BooksView extends PureComponent {
         <ul>
           {this.state.books.map((book) => (
             <li key={book.id}>
-              <Link to={`/${this.props.match.url}/${book.id}`}>
-                {" "}
+              <Link to={`${this.props.match.url}/${book.id}`}>
                 {book.title}
               </Link>
             </li>

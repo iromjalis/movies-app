@@ -9,6 +9,7 @@
   font-size: calc(10px + 2vmin);
   -webkit-box-shadow: 5px 5px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #000000;
+  padding-bottom: 20px;
 }
 
 .NavigationList {
@@ -18,7 +19,8 @@
   justify-content: left;
 }
 .Navigation-item,
-a {
+a,
+li {
   margin: 4px;
   text-decoration: blue;
   list-style: none;
