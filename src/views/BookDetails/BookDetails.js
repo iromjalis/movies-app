@@ -6,22 +6,25 @@ import Axios from "axios";
 
 class BookDetails extends PureComponent {
   state = {
-    book: [],
+    id: null,
+    descr: null,
+    genre: null,
+    imgUrl: null,
+    title: null,
   };
 
   async componentDidMount() {
     const { bookId } = this.props.match.params;
     const response = await Axios.get(`http://localhost:4040/books/${bookId}`);
-    console.log(response);
-    this.setState({ book: response.data });
+
+    this.setState({ ...response.data });
 
     return response.data;
   }
 
   render() {
-    //*/books
-    // console.log(this.props.match.url);
-    const { id, descr, genre, imgUrl, title } = this.state.book;
+    const { id, descr, genre, imgUrl, title } = this.state;
+
     return (
       <div className="BooksViewWrapper">
         Book detail:

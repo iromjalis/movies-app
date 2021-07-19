@@ -67,7 +67,9 @@ const App = () => {
         <Route path="/books" exact component={BooksView} />
         <Route path="/books/:bookId" component={BookDetails} />
         <Route path="/movies" exact component={MoviesView} />
-        <Route path="/movies" component={MovieDetail} />
+        <Route path="/3/movie" component={MovieDetail} />
+        {/* https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US */}
+
         <Route component={NotFound} />
       </Switch>
       {/* <Redirect to="/" /> */}

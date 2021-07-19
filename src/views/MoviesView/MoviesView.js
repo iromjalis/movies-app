@@ -6,7 +6,7 @@ import Axios from "axios";
 
 class MoviesView extends PureComponent {
   state = {
-    movies: [],
+    movies: null,
   };
 
   async componentDidMount() {
@@ -14,6 +14,7 @@ class MoviesView extends PureComponent {
     const URL = `https://api.themoviedb.org/3/trending/all/day?api_key=${API}`;
 
     const response = await Axios.get(`${URL}`);
+    console.log(this.props.match.url);
 
     this.setState({ movies: response.data.results });
     return response;
@@ -21,14 +22,15 @@ class MoviesView extends PureComponent {
 
   render() {
     //*/books
-    // console.log(this.props.match.url);
     return (
       <div className="MoviesViewWrapper">
         Movies list:
         <ul>
           {this.state.movies.map(({ id, title }) => (
             <li key={id}>
-              <Link to={`${this.props.match.url}/3/movie/${id}`}>
+              <Link to={`3/movie/${id}`}>
+                {/* https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US */}
+
                 {title ? title : `404 - page not found ☹`}
                 {title}
               </Link>
