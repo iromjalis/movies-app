@@ -26,16 +26,17 @@ class MoviesView extends PureComponent {
       <div className="MoviesViewWrapper">
         Movies list:
         <ul>
-          {this.state.movies.map(({ id, title }) => (
-            <li key={id}>
-              <Link to={`3/movie/${id}`}>
-                {/* https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US */}
+          {this.state.movies &&
+            this.state.movies.map(({ id, title }) => (
+              <li key={id}>
+                <Link to={`3/movie/${id}`}>
+                  {/* https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US */}
 
-                {title ? title : `404 - page not found ☹`}
-                {title}
-              </Link>
-            </li>
-          ))}
+                  {title ? title : `404 - page not found ☹`}
+                  {title}
+                </Link>
+              </li>
+            ))}
         </ul>
       </div>
     );
