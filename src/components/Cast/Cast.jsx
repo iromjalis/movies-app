@@ -20,7 +20,7 @@ const Cast = () => {
         {cast.length > 0 ? (
           cast.map(({ name, cast_id }) => <li key={cast_id}>{name}</li>)
         ) : (
-          <li>Not found any cast</li>
+          <li>404 - Not found any cast</li>
         )}
       </ul>
     </>
