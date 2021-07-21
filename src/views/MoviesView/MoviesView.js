@@ -3,7 +3,6 @@ import React, { PureComponent } from "react";
 
 //*components
 import FilmList from "../../components/FilmList/FilmList";
-// import SearchBar from "../../components/SearchBar/SearchBar";
 
 //*helpers
 import { getFilmsByQuery } from "../../services/apiService";
@@ -43,17 +42,18 @@ class MoviesView extends PureComponent {
     return (
       <div className={s.MoviesViewWrapper}>
         {/* <SearchBar /> */}
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className={s.SearchBarForm}>
           <label htmlFor="">
             <input
               type="text"
               name="query"
               value={query}
               onChange={this.handleChange}
-              placeholder="Найтите любой фильм"
-            />
+              className={s.SearchBarInput}
+              placeholder="...write the film you`re searching"
+            ></input>
           </label>
-          <button>Search</button>
+          <button className={s.SearchBtn}>Search</button>
         </form>
 
         <FilmList
