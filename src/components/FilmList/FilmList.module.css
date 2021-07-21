@@ -1,0 +1,20 @@
+.TrendingList {
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.TrendingItem {
+  max-width: 31%;
+  height: 300px;
+
+  text-align: center;
+  overflow: hidden;
+  margin: 5px;
+  outline: 1px solid grey;
+  box-shadow: 5px 5px 15px 5px #000000;
+}

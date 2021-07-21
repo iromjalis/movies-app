@@ -18,6 +18,9 @@ class AuthorsView extends PureComponent {
     this.setState({ authors: response.data });
     return response.data;
   }
+  handleClick = () => {
+    console.log(`${this.props.match.url} `);
+  };
 
   render() {
     return (
@@ -26,7 +29,10 @@ class AuthorsView extends PureComponent {
         <ul>
           {this.state.authors.map((author) => (
             <li key={author.id}>
-              <NavLink to={`${this.props.match.url}/${author.id}`}>
+              <NavLink
+                to={`${this.props.match.url}/${author.id}`}
+                onClick={this.handleClick}
+              >
                 {author.name}
               </NavLink>
             </li>

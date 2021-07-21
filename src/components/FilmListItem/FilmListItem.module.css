@@ -1,0 +1,11 @@
+.TrendingItem {
+  max-width: 30%;
+  height: 33vw;
+
+  text-align: center;
+  overflow: hidden;
+  margin: 5px;
+  border-radius: 25px;
+  border: none;
+  box-shadow: 5px 5px 15px 5px #000000;
+}

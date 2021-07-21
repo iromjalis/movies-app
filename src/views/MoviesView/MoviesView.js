@@ -1,43 +1,46 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
+import FilmListItem from "../../components/FilmListItem/FilmListItem";
+import FilmList from "../../components/FilmList/FilmList";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import { getFilmByQuery } from "../../services/apiService";
 // import PropTypes from "prop-types";
-//import { Test } from './BooksView.styles';
-import Axios from "axios";
+import s from "./MoviesView.module.css";
 
 class MoviesView extends PureComponent {
   state = {
-    movies: null,
+    movies: "",
+    query: "",
   };
 
-  async componentDidMount() {
-    const API = "0dba41d64d38d3842f2e56a581ca4bf3";
-    const URL = `https://api.themoviedb.org/3/trending/all/day?api_key=${API}`;
+  componentDidMount() {}
 
-    const response = await Axios.get(`${URL}`);
-    console.log(this.props.match.url);
-
-    this.setState({ movies: response.data.results });
-    return response;
-  }
-
+  handleSubmit = (query) => {
+    this.setState({ query });
+  };
   render() {
-    //*/books
+    const { query } = this.state;
     return (
-      <div className="MoviesViewWrapper">
-        Movies list:
-        <ul>
+      <div className={s.MoviesViewWrapper}>
+        <SearchBar />
+        <FilmList
+          query={this.state.query}
+          onSubmit={this.handleSubmit}
+          onSetQuery={this.handleSetQuery}
+        />
+        {/* <ul>
           {this.state.movies &&
             this.state.movies.map(({ id, title }) => (
               <li key={id}>
-                <Link to={`3/movie/${id}`}>
-                  {/* https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US */}
+                <Link to={`3/movie/${query}`}>
+                  <FilmListItem query={query} />
 
                   {title ? title : `404 - page not found ☹`}
                   {title}
                 </Link>
               </li>
             ))}
-        </ul>
+        </ul> */}
       </div>
     );
   }
