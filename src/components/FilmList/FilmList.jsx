@@ -4,6 +4,7 @@ import s from "./FilmList.module.css";
 import FilmListItem from "../FilmListItem/FilmListItem";
 
 const FilmList = ({ films, linkToHome, history, query }) => {
+  // console.log("query", query);
   return (
     <>
       {films && (
@@ -11,7 +12,7 @@ const FilmList = ({ films, linkToHome, history, query }) => {
           {films.map(({ id, title, poster_path, overview }) => (
             <FilmListItem
               key={id}
-              query={(query = "")}
+              query={query}
               history={history}
               linkToHome={linkToHome}
               id={id}

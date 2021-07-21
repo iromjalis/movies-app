@@ -1,23 +1,30 @@
-import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
-//import { Test } from './Cast.styles';
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { getCastInfo } from "../../services/apiService";
 
-class Cast extends PureComponent {
-  state = {
-    hasError: false,
-  };
+const Cast = () => {
+  const history = useHistory();
+  console.log("cast", history);
+  const [cast, setCast] = useState([]);
 
-  render() {
-    return <div className="CastWrapper">Cast </div>;
-  }
-}
+  useEffect(() => {
+    getCastInfo(history.location.state.id).then((resp) =>
+      setCast(resp.data.cast)
+    );
+  }, [history.location.state.id]);
 
-Cast.propTypes = {
-  // bla: PropTypes.string,
-};
-
-Cast.defaultProps = {
-  // bla: 'test',
+  return (
+    <>
+      <h1>Cast</h1>
+      <ul>
+        {cast.length > 0 ? (
+          cast.map(({ name, cast_id }) => <li key={cast_id}>{name}</li>)
+        ) : (
+          <li>Not found any cast</li>
+        )}
+      </ul>
+    </>
+  );
 };
 
 export default Cast;

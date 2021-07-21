@@ -1,28 +1,45 @@
 import axios from "axios";
 
 async function getTrendingFilms() {
-  const response = await axios({
+  const resp = await axios({
     method: "GET",
-    url: "https://api.themoviedb.org/3/trending/movie/week?api_key=0dba41d64d38d3842f2e56a581ca4bf3",
+    url: "https://api.themoviedb.org/3/trending/movie/week?api_key=8d4e0a5a0c37d4780eefdf617d0feea1",
   });
-  return response;
+  return resp;
 }
 
 function getFilmById(id) {
-  const response = axios({
+  return axios({
     method: "GET",
-    url: `https://api.themoviedb.org/3/movie/${id}?api_key=0dba41d64d38d3842f2e56a581ca4bf3`,
+    url: `https://api.themoviedb.org/3/movie/${id}?api_key=8d4e0a5a0c37d4780eefdf617d0feea1`,
   });
-  return response;
-}
-function getFilmByQuery(query) {
-  const response = axios({
-    method: "GET",
-    url:
-      `https://api.themoviedb.org/3/search/movie?api_key=0dba41d64d38d3842f2e56a581ca4bf3` +
-      query,
-  });
-  return response;
 }
 
-export { getTrendingFilms, getFilmByQuery, getFilmById };
+function getFilmsByQuery(query) {
+  return axios({
+    method: "GET",
+    url:
+      "https://api.themoviedb.org/3/search/movie?api_key=8d4e0a5a0c37d4780eefdf617d0feea1&query=" +
+      query,
+  });
+}
+
+function getCastInfo(id) {
+  return axios.get(
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=8d4e0a5a0c37d4780eefdf617d0feea1`
+  );
+}
+
+function getReviewsInfo(id) {
+  return axios.get(
+    `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=8d4e0a5a0c37d4780eefdf617d0feea1`
+  );
+}
+
+export {
+  getTrendingFilms,
+  getFilmById,
+  getFilmsByQuery,
+  getCastInfo,
+  getReviewsInfo,
+};

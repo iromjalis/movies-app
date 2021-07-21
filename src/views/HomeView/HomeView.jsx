@@ -16,6 +16,7 @@ class HomeView extends PureComponent {
     getTrendingFilms().then((response) => {
       this.setState({ films: response.data.results });
     });
+    // console.log("home", this.props);
   }
 
   render() {

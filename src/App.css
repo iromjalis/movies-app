@@ -38,5 +38,8 @@ li {
 img {
   width: 100%;
   object-fit: contain;
-  object-position: top;
+  object-position: center;
+}
+li > a {
+  margin: 0;
 }

@@ -1,46 +1,68 @@
 import React, { PureComponent } from "react";
-import { Link } from "react-router-dom";
-import FilmListItem from "../../components/FilmListItem/FilmListItem";
-import FilmList from "../../components/FilmList/FilmList";
-import SearchBar from "../../components/SearchBar/SearchBar";
-import { getFilmByQuery } from "../../services/apiService";
 // import PropTypes from "prop-types";
+
+//*components
+import FilmList from "../../components/FilmList/FilmList";
+// import SearchBar from "../../components/SearchBar/SearchBar";
+
+//*helpers
+import { getFilmsByQuery } from "../../services/apiService";
+
+//*styles
 import s from "./MoviesView.module.css";
 
 class MoviesView extends PureComponent {
   state = {
-    movies: "",
+    films: [],
     query: "",
   };
 
-  componentDidMount() {}
-
-  handleSubmit = (query) => {
-    this.setState({ query });
+  async componentDidMount() {
+    if (this.props.location.state !== null) {
+      const response = await getFilmsByQuery(this.props.location.state.query);
+      // console.log("MoviesPage", this.props.location.state.query);
+      // console.log("MoviesPage", response);
+      this.setState({
+        films: response.data.results,
+        query: this.props.location.state.query,
+      });
+    }
+  }
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await getFilmsByQuery(this.state.query);
+    this.setState({ films: response.data.results });
   };
+
+  handleChange = (e) => {
+    this.setState({ query: e.target.value });
+  };
+
   render() {
-    const { query } = this.state;
+    const { query, films } = this.state;
     return (
       <div className={s.MoviesViewWrapper}>
-        <SearchBar />
+        {/* <SearchBar /> */}
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor="">
+            <input
+              type="text"
+              name="query"
+              value={query}
+              onChange={this.handleChange}
+              placeholder="Найтите любой фильм"
+            />
+          </label>
+          <button>Search</button>
+        </form>
+
         <FilmList
-          query={this.state.query}
+          films={films}
+          query={query}
           onSubmit={this.handleSubmit}
           onSetQuery={this.handleSetQuery}
+          history={this.props.history}
         />
-        {/* <ul>
-          {this.state.movies &&
-            this.state.movies.map(({ id, title }) => (
-              <li key={id}>
-                <Link to={`3/movie/${query}`}>
-                  <FilmListItem query={query} />
-
-                  {title ? title : `404 - page not found ☹`}
-                  {title}
-                </Link>
-              </li>
-            ))}
-        </ul> */}
       </div>
     );
   }
