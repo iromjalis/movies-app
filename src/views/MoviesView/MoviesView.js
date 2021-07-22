@@ -42,19 +42,21 @@ class MoviesView extends PureComponent {
     return (
       <div className={s.MoviesViewWrapper}>
         {/* <SearchBar /> */}
-        <form onSubmit={this.handleSubmit} className={s.SearchBarForm}>
-          <label htmlFor="">
-            <input
-              type="text"
-              name="query"
-              value={query}
-              onChange={this.handleChange}
-              className={s.SearchBarInput}
-              placeholder="...write the film you`re searching"
-            ></input>
-          </label>
-          <button className={s.SearchBtn}>Search</button>
-        </form>
+        <div className={s.FormDiv}>
+          <form onSubmit={this.handleSubmit} className={s.SearchBarForm}>
+            <label htmlFor="">
+              <input
+                type="text"
+                name="query"
+                value={query}
+                onChange={this.handleChange}
+                className={s.SearchBarInput}
+                placeholder="...write the film you`re searching"
+              ></input>
+            </label>
+            <button className={s.SearchBtn}>Search</button>
+          </form>
+        </div>
 
         <FilmList
           films={films}

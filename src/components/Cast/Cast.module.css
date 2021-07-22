@@ -1,0 +1,11 @@
+.CastList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+ul > li {
+  width: 200px;
+  height: auto;
+}

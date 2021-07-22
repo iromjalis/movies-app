@@ -1,16 +1,17 @@
 .MoviesViewWrapper {
+  position: relative;
   text-align: center;
 }
 .SearchBarForm {
   position: relative;
-  max-width: 50vw;
+  max-width: 100px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .SearchBarInput {
   width: 350px;
-  padding: 10px 2px 2px 12px;
+  padding: 10px 2px 2px 25px;
   font-size: 14px;
   border: none;
   border-bottom: 1px solid rgb(92, 70, 70);
@@ -20,15 +21,19 @@
   outline: none;
   background-color: #fff;
 }
+.FormDiv {
+  position: relative;
+}
+
 .SearchBtn {
   color: #fff;
   position: absolute;
-  right: 0;
+  left: -77px;
   top: 0;
   font-weight: 700;
   border: 1px solid rgb(92, 70, 70);
   border-radius: 15px;
-  padding: 10px 20px;
+  padding: 6px 20px;
   background: linear-gradient(135deg, #cecece 0%, #1e78b3 50%, #000000 100%);
 }
 .SearchBtn:hover {

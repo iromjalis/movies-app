@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getReviewsInfo } from "../../services/apiService";
+import s from "./Reviews.module.css";
 
 const Reviews = () => {
   const history = useHistory();
@@ -16,14 +17,30 @@ const Reviews = () => {
   return (
     <>
       <h1>Reviews</h1>
-      <ul>
+      <ul className={s.ReviewsList}>
         {reviews.length > 0 ? (
-          reviews.map(({ author, id, content }) => (
-            <li key={id}>
-              <p>{author}</p>
-              <p>{content}</p>
-            </li>
-          ))
+          reviews.map(
+            ({
+              author_details,
+              rating,
+              author,
+              id,
+              content,
+              created_at,
+              url,
+            }) => (
+              <li key={id}>
+                <b>@{author}</b>: <span>{content}</span>
+                {author_details.rating ? (
+                  <p>
+                    <i>rating:</i> {author_details.rating} &#9734;
+                  </p>
+                ) : (
+                  ""
+                )}
+              </li>
+            )
+          )
         ) : (
           <li>404 - Not found any reviews</li>
         )}
